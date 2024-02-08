@@ -24,3 +24,7 @@ add Books module to .sln file
 dotnet sln RiverBooks.sln add ./RiverBooks.Books/RiverBooks.Books.csproj
 ```
 
+add package
+```zsh
+dotnet add package "[package name]"
+```
