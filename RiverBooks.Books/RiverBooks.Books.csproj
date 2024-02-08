@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Needs this for module -->
+  <!-- All you need is an item group with framework reference with include Microsoft.ASPNetCore.App
+  Once you have that, that's going to allow us to reference cetain types that are defined inside of Asp .Net Core 
+  -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.22.0" />
+  </ItemGroup>
+  
+</Project>
