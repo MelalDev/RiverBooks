@@ -1,4 +1,4 @@
-namespace RiverBooks.Books;
+namespace RiverBooks.Books.BookEndpoints;
 
 /*
 * For the response, I like to have strongly typed responses for each one of my endpoints so that I can have complete

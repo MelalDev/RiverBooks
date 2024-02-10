@@ -1,5 +1,41 @@
+@RiverBooksWebHost=http://localhost:5139
 
-GET {{RiverBooksWebHost}}/Books/
+@BookId=ede24de1-23d1-4be2-99fd-c5d94ff9e161
+
+GET {{RiverBooksWebHost}}/books/
 Accept: application/json
 
 ###
+
+
+GET {{RiverBooksWebHost}}/books/{{BookId}}
+Accept: application/json
+
+###
+
+POST {{RiverBooksWebHost}}/books
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": "ede24de1-23d1-4be2-99fd-c5d94ff9e161",
+    "title": "Modular Monoliths - Getting Started",
+    "author": "Steve Smith",
+    "price": 29.99
+}
+
+###
+
+DELETE  {{RiverBooksWebHost}}/books/{{BookId}}
+Accept: application/json
+
+###
+
+POST {{RiverBooksWebHost}}/books/{{BookId}}/priceHistory
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": "ede24de1-23d1-4be2-99fd-c5d94ff9e161",
+    "newPrice": -9.99
+}

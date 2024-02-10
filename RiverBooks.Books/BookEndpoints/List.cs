@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 
-namespace RiverBooks.Books;
+namespace RiverBooks.Books.BookEndpoints;
 
 //https://fast-endpoints.com
 /*
@@ -9,7 +9,7 @@ namespace RiverBooks.Books;
 * For a list endpoint, we don't need to pass it a request. At this point, maybe if we add paging or sth later,
 * we'll pass in a request for what page you want. For now, we're just saying list all the books.
 */
-internal class ListBooksEndpoint(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
+internal class List(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
 {
     /*
     * For our endpoint, there are two methods that we need to implement for FastEndpoints. The first one is the one

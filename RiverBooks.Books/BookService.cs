@@ -1,4 +1,3 @@
-
 namespace RiverBooks.Books;
 
 /*
@@ -66,6 +65,6 @@ internal sealed class BookService : IBookService
         // handle not found case
 
         book!.UpdatePrice(newPrice);
-        await _bookRepository.SaveChangesAsync();        
+        await _bookRepository.SaveChangesAsync();
     }
 }
