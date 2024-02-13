@@ -1,27 +1,59 @@
+using System.Reflection;
 using FastEndpoints;
+using FastEndpoints.Security;
+using FastEndpoints.Swagger;
 using RiverBooks.Books;
+using RiverBooks.Users;
+using Serilog;
+
+var logger = Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
+
+logger.Information("Starting web host.");
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Host.UseSerilog((_, config) =>
+{
+    config.ReadFrom.Configuration(builder.Configuration);
+});
 
-builder.Services.AddFastEndpoints();
+builder.Services.AddFastEndpoints()
+    .AddJWTBearerAuth(builder.Configuration["Auth:JwtSecret"]!)
+    .AddAuthorization()
+    .SwaggerDocument();
 
 // Add Module Services
-builder.Services.AddBookServices(builder.Configuration);
+List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
+builder.Services.AddBookServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddUserModuleServices(builder.Configuration, logger, mediatRAssemblies);
+
+// Set up MediatR
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray());
+});
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseAuthentication()
+        .UseAuthorization();
 }
 
-app.UseHttpsRedirection();
+/*
+* when configuring auth/authen, if you use `app.UseHttpsRedirection()`, that will cause you problems once you start doing 
+* authorization headers, because if it redirects from HTTP to HTTPS, it will not forward the authorization headers, and
+* you'll be scratching your head about why the token isn't working.
+*/
+//app.UseHttpsRedirection();
 
-app.UseFastEndpoints();
+app.UseFastEndpoints()
+    .UseSwaggerGen();
 
 app.Run();
 
