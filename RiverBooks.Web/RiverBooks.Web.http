@@ -1,6 +1,6 @@
 @RiverBooksWebHost=https://localhost:7219
 
-@BookId=ede24de1-23d1-4be2-99fd-c5d94ff9e161
+@BookId=28f9de3e-7584-4355-8b4e-cf301c159d30
 
 GET {{RiverBooksWebHost}}/books/
 Accept: application/json
@@ -64,7 +64,7 @@ Content-Type: application/json
 
 ###
 
-@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzb25waGFtQGdtYWlsLmNvbSIsImlhdCI6MTcwNzc4OTcyOCwiZXhwIjoxNzA3NzkzMzI4LCJuYmYiOjE3MDc3ODk3Mjh9.tUl_CRxH9L3VaNYSLUEDJ3fcs_cL1-GdmERXy496dQs
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzb25waGFtQGdtYWlsLmNvbSIsImlhdCI6MTcwNzgyMDQ5OSwiZXhwIjoxNzA3ODI0MDk5LCJuYmYiOjE3MDc4MjA0OTl9.TJPSYWQrsaYwnwJgl6FVlwIINVp6mwLA-ELBtr7jJdk
 
 # Add item to cart
 POST {{RiverBooksWebHost}}/cart
@@ -73,7 +73,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "bookId": "ede24de1-23d1-4be2-99fd-c5d94ff9e161",
+    "bookId": "28f9de3e-7584-4355-8b4e-cf301c159d30",
     "quantity": 1
 }
 

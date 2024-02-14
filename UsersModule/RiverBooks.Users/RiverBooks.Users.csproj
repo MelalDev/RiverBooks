@@ -20,4 +20,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BooksModule\RiverBooks.Books.Contracts\RiverBooks.Books.Contracts.csproj" />
+  </ItemGroup>
 </Project>
