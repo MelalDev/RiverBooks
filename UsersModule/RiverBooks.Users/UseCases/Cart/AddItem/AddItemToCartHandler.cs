@@ -2,7 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using RiverBooks.Books.Contracts;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart.AddItem;
 
 public class AddItemToCartHandler : IRequestHandler<AddItemToCartCommand, Result>
 {
@@ -24,7 +24,7 @@ public class AddItemToCartHandler : IRequestHandler<AddItemToCartCommand, Result
 
     public async Task<Result> Handle(AddItemToCartCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetUserWithCardByEmail(request.EmailAddress);
+        var user = await _userRepository.GetUserWithCardByEmailAsync(request.EmailAddress);
 
         if (user is null)
         {

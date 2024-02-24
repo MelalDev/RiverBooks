@@ -11,7 +11,7 @@ internal class EfApplicationUserRepository : IApplicationUserRepository
         _dbContext = dbContext;
     }
 
-    public async Task<ApplicationUser> GetUserWithCardByEmail(string email)
+    public async Task<ApplicationUser> GetUserWithCardByEmailAsync(string email)
     {
         return await _dbContext.ApplicationUsers
             .Include(user => user.CartItems)

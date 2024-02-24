@@ -1,7 +1,7 @@
 using Ardalis.Result;
 using MediatR;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart.AddItem;
 
 /*
 * the `AddItemToCartCommand` command is actually part of sth else. That's not part of endpoint. That's part of what is typically

@@ -6,6 +6,6 @@ namespace RiverBooks.Users;
 */
 public interface IApplicationUserRepository
 {
-    Task<ApplicationUser> GetUserWithCardByEmail(string email);
+    Task<ApplicationUser> GetUserWithCardByEmailAsync(string email);
     Task<int> SaveChangesAsync();
 }

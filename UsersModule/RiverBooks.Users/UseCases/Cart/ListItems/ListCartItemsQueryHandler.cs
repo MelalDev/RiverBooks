@@ -2,7 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using RiverBooks.Users.CartEndpoints;
 
-namespace RiverBooks.Users.UseCases;
+namespace RiverBooks.Users.UseCases.Cart.ListItems;
 
 internal class ListCartItemsQueryHandler : IRequestHandler<ListCartItemsQuery, Result<List<CartItemDto>>>
 {
@@ -25,7 +25,7 @@ internal class ListCartItemsQueryHandler : IRequestHandler<ListCartItemsQuery, R
 
     public async Task<Result<List<CartItemDto>>> Handle(ListCartItemsQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetUserWithCardByEmail(request.EmailAddress);
+        var user = await _userRepository.GetUserWithCardByEmailAsync(request.EmailAddress);
 
         if (user is null)
         {
