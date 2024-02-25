@@ -20,6 +20,14 @@ public class ApplicationUser : IdentityUser
     private readonly List<CartItem> _cartItems = new();
     public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
 
+    /*
+    * Now these addresses are going to entities, this is a one-to-many collection, so it's not like the Order where we're
+    * just going to add the addresses as complex property, we need to have an actual separate entity for each address,
+    * we're going to call that a user street address, and it's just going to have an ID plus the address value object.
+    */
+    private readonly List<UserStreetAddress> _addresses = [];
+    public IReadOnlyCollection<UserStreetAddress> Addresses => _addresses.AsReadOnly();
+
     public void AddItemToCart(CartItem item)
     {
         Guard.Against.Null(item);
@@ -33,6 +41,23 @@ public class ApplicationUser : IdentityUser
             return;
         }
         _cartItems.Add(item);
+    }
+
+    internal UserStreetAddress AddAddress(Address address)
+    {
+        Guard.Against.Null(address);
+
+        // find existing address and just return it
+        var existingAddress = _addresses.SingleOrDefault(a => a.StreetAddress == address);
+        if (existingAddress != null)
+        {
+            return existingAddress;
+        }
+
+        var newAddress = new UserStreetAddress(Id, address);
+        _addresses.Add(newAddress);
+
+        return newAddress;
     }
 
     internal void ClearCart()

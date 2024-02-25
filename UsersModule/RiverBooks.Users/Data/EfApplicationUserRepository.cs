@@ -11,6 +11,13 @@ internal class EfApplicationUserRepository : IApplicationUserRepository
         _dbContext = dbContext;
     }
 
+    public async Task<ApplicationUser> GetUserWithAddressesByEmailAsync(string email)
+    {
+        return await _dbContext.ApplicationUsers
+            .Include(user => user.Addresses)
+            .SingleAsync(user => user.Email == email);
+    }
+
     public async Task<ApplicationUser> GetUserWithCardByEmailAsync(string email)
     {
         return await _dbContext.ApplicationUsers
