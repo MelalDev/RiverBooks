@@ -24,8 +24,12 @@ public static class UsersModuleServiceExtensions
         services.AddIdentityCore<ApplicationUser>()
             .AddEntityFrameworkStores<UsersDbContext>();
 
+        //Add MediatR Domain Event Dispatcher
+        services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
+
         // Add User Serives
         services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
+        services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
 
         // if using MediatR in this module, add any assemblies that contain handlers to the list
         mediatRAssemblies.Add(typeof(UsersModuleServiceExtensions).Assembly);

@@ -10,19 +10,27 @@ internal class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, R
     private readonly IOrderRepository _orderRepository;
     private readonly ILogger<CreateOrderCommandHandler> _logger;
 
-    public CreateOrderCommandHandler(IOrderRepository orderRepository, ILogger<CreateOrderCommandHandler> logger)
+    // applying Materialized View
+    private readonly IOrderAddressCache _addressCache;
+
+    public CreateOrderCommandHandler(IOrderRepository orderRepository, ILogger<CreateOrderCommandHandler> logger, IOrderAddressCache addressCache)
     {
         _orderRepository = orderRepository;
         _logger = logger;
+        _addressCache = addressCache;
     }
 
     public async Task<Result<OrderDetailsResponse>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
         var items = request.OrderItems.Select(oi => new OrderItem(oi.BookId, oi.Quantity, oi.UnitPrice, oi.Description));
 
-        var shippingAddress = new Address("123 Main", "", "Kent", "OH", "44444", "USA");
-        var billingAddress = shippingAddress;
-        var newOrder = Order.Factory.Create(request.UserId, shippingAddress, billingAddress, items);
+        //var shippingAddress = new Address("123 Main", "", "Kent", "OH", "44444", "USA");
+        //var billingAddress = shippingAddress;
+
+        var shippingAddress = await _addressCache.GetByIdAsync(request.ShippingAddressId);
+        var billingAddress = await _addressCache.GetByIdAsync(request.BillingAddressId);
+
+        var newOrder = Order.Factory.Create(request.UserId, shippingAddress.Value.Address, billingAddress.Value.Address, items);
 
         await _orderRepository.AddAsync(newOrder);
         await _orderRepository.SaveChangesAsync();
