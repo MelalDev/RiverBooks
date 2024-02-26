@@ -22,7 +22,7 @@ dotnet new webapi -n RiverBooks.Web
 
 add RiverBooks.Web to .sln file
 ```zsh
-dotnet sln RiverBooks.sln add ./RiverBooks.Web/RiverBooks.Web.csproj
+dotnet sln RiverBooks.sln add .src/RiverBooks.Web/RiverBooks.Web.csproj
 ```
 
 create class library for Books module
@@ -32,7 +32,7 @@ dotnet new classlib -n RiverBooks.Books -o ./RiverBooks.Books
 
 add Books module to .sln file
 ```zsh
-dotnet sln RiverBooks.sln add ./RiverBooks.Books/RiverBooks.Books.csproj
+dotnet sln RiverBooks.sln add .src/RiverBooks.Books/RiverBooks.Books.csproj
 ```
 
 add nuget package
