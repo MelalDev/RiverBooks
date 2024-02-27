@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users;
 
@@ -11,7 +12,7 @@ internal class LogNewAddressesHandler : INotificationHandler<AddressAddedEvent>
   {
     _logger = logger;
   }
-  public Task Handle(AddressAddedEvent notification, 
+  public Task Handle(AddressAddedEvent notification,
     CancellationToken ct)
   {
     _logger.LogInformation("[DE Handler]New address added to user {user}: {address}",
