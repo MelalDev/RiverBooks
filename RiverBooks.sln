@@ -39,6 +39,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solutions Item", "_Solutio
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending", "src\EmailSendingModule\RiverBooks.EmailSending\RiverBooks.EmailSending.csproj", "{414B95B0-11B1-4178-B2DC-7C02D6124746}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmailSendingModule", "EmailSendingModule", "{100CF025-391F-47A9-9904-A8C16C15B6E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.EmailSending.Contracts", "src\EmailSendingModule\RiverBooks.EmailSending.Contracts\RiverBooks.EmailSending.Contracts.csproj", "{D874CA27-50C1-49C6-9AC3-A9FE34991DD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +91,14 @@ Global
 		{1AA0F11E-25C9-4DFB-A590-C078FA89C094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AA0F11E-25C9-4DFB-A590-C078FA89C094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AA0F11E-25C9-4DFB-A590-C078FA89C094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414B95B0-11B1-4178-B2DC-7C02D6124746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414B95B0-11B1-4178-B2DC-7C02D6124746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414B95B0-11B1-4178-B2DC-7C02D6124746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414B95B0-11B1-4178-B2DC-7C02D6124746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D874CA27-50C1-49C6-9AC3-A9FE34991DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D874CA27-50C1-49C6-9AC3-A9FE34991DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D874CA27-50C1-49C6-9AC3-A9FE34991DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D874CA27-50C1-49C6-9AC3-A9FE34991DD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +117,9 @@ Global
 		{4CEF2C8B-E0D9-4090-8D6B-52D75D9A055D} = {9230DC13-8482-47D1-BC1C-6D259D1D0140}
 		{092216A5-2569-43FF-9A65-7A11CDA16762} = {A40124F7-489F-4B40-84CD-C1B4AC55D8AA}
 		{1AA0F11E-25C9-4DFB-A590-C078FA89C094} = {41B97CF7-9D18-4118-A011-0611CC810544}
+		{414B95B0-11B1-4178-B2DC-7C02D6124746} = {100CF025-391F-47A9-9904-A8C16C15B6E9}
+		{100CF025-391F-47A9-9904-A8C16C15B6E9} = {A40124F7-489F-4B40-84CD-C1B4AC55D8AA}
+		{D874CA27-50C1-49C6-9AC3-A9FE34991DD5} = {100CF025-391F-47A9-9904-A8C16C15B6E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {984C7637-B4D3-4E81-904A-B5B0C9165645}
