@@ -31,6 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.SharedKernel", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiverBooks.OrderProcessing.Tests", "src\OrderProcessingModule\RiverBooks.OrderProcessing.Tests\RiverBooks.OrderProcessing.Tests.csproj", "{1AA0F11E-25C9-4DFB-A590-C078FA89C094}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solutions Item", "_Solutions Item", "{7C4375C9-E78B-4D03-BA59-9510D98D2AD1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		docker-compose.yml = docker-compose.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
@@ -6,6 +6,7 @@ using RiverBooks.Books;
 using RiverBooks.OrderProcessing;
 using RiverBooks.SharedKernel;
 using RiverBooks.Users;
+using RiverBooks.Users.UseCases.Cart.AddItem;
 using Serilog;
 
 var logger = Log.Logger = new LoggerConfiguration()
@@ -39,6 +40,9 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray());
 });
 builder.Services.AddMediatRLoggingBehavior();
+builder.Services.AddMediatRFluentValidationBehavior();
+// you can pick any type, but it makes sense if you pick validator type.
+builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
 
 //Add MediatR Domain Event Dispatcher
 builder.Services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();

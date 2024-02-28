@@ -5,7 +5,7 @@ docker compose up -d
 
 ## Run project
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet run --launch-profile https
 ```
 
@@ -43,7 +43,7 @@ dotnet add package "[package name]"
 ## Instal Migration tools
 Add nuget package to Web project
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
 
@@ -57,7 +57,7 @@ dotnet tool update --global dotnet-ef
 ## Db Migrations Books
 Add migration
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet ef migrations add Initial -c BookDbContext -p ../BooksModule/RiverBooks.Books/RiverBooks.Books.csproj -s ./RiverBooks.Web.csproj -o Data/Migrations
 ```
 -c BookDbContext: specify where to find DbContext and what DbContext to use. Assuming you only have one DbContext
@@ -73,6 +73,7 @@ ahead and create those for us.
 
 Apply migration to Database
 ```zsh
+cd src/RiverBooks.Web
 dotnet ef database update -c BookDbContext
 
 For Testing, for more detail: https://learn.microsoft.com/en-us/ef/core/cli/dotnet#aspnet-core-environment
@@ -82,13 +83,13 @@ dotnet ef database update -- --environment Testing
 ## Db Migrations Users
 Add migration
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet ef migrations add InitialUsers -c UsersDbContext -p ../UsersModule/RiverBooks.Users/RiverBooks.Users.csproj -s ./RiverBooks.Web.csproj -o Data/Migrations
 ```
 
 Apply migration to Database
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet ef database update -c UsersDbContext
 
 For Testing, for more detail: https://learn.microsoft.com/en-us/ef/core/cli/dotnet#aspnet-core-environment
@@ -98,17 +99,22 @@ dotnet ef database update -- --environment Testing
 ## Db Migrations OrderProcessing
 Add migration
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet ef migrations add Initial_OrderProcessing -c OrderProcessingDbContext -p ../OrderProcessingModule/RiverBooks.OrderProcessing/RiverBooks.OrderProcessing.csproj -s ./RiverBooks.Web.csproj -o Data/Migrations
 ```
 
 Apply migration to Database
 ```zsh
-cd RiverBooks.Web
+cd src/RiverBooks.Web
 dotnet ef database update -c OrderProcessingDbContext
 ```
 
 ## Add reference project
 ```zsh
 dotnet add reference [your path project]
+```
+
+## Error: The SSL connection could not be established
+```zsh
+dotnet dev-certs https --trust
 ```
