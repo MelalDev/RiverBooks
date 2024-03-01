@@ -21,6 +21,13 @@ services:
     volumes: 
       - redis:/data
 
+  papercut:
+    image: jijiechen/papercut:latest
+    container_name: papercut
+    ports:
+      - "25:25"
+      - "37408:37408"
+
 volumes:
   sqlvolume:
   redis:

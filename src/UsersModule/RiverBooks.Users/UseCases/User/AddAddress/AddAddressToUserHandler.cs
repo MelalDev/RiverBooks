@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using RiverBooks.Users.Domain;
 using RiverBooks.Users.Interfaces;
 
+namespace RiverBooks.Users.UseCases.User.AddAddress;
+
 internal class AddAddressToUserHandler : IRequestHandler<AddAddressToUserCommand, Result>
 {
     private readonly IApplicationUserRepository _userRepository;
