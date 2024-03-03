@@ -1,4 +1,4 @@
-namespace RiverBooks.EmailSending.Integrations;
+namespace RiverBooks.EmailSending;
 
 internal interface ISendEmail
 {

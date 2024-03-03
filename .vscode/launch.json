@@ -8,7 +8,7 @@
             "name": "River Books Web",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}/RiverBooks.Web/RiverBooks.Web.csproj"
+            "projectPath": "${workspaceFolder}/src/RiverBooks.Web/RiverBooks.Web.csproj"
         }
     ]
 }

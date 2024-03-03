@@ -64,7 +64,7 @@ Content-Type: application/json
 
 ###
 
-@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzb25waGFtNEBnbWFpbC5jb20iLCJpYXQiOjE3MDkzNTM0NzIsImV4cCI6MTcwOTM1NzA3MiwibmJmIjoxNzA5MzUzNDcyfQ.rhZfk0AYVhvjScKtsvJxryAub_0gRKDBpm5QqWiypvA
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJzb25waGFtNEBnbWFpbC5jb20iLCJpYXQiOjE3MDk0MzU1MzEsImV4cCI6MTcwOTQzOTEzMSwibmJmIjoxNzA5NDM1NTMxfQ.FRKKM_FkhdwNuq1ZRgvXGFK1Uwe90C9zDkm5w6mUNSg
 
 # Add item to cart
 POST {{RiverBooksWebHost}}/cart
@@ -140,3 +140,10 @@ Content-Type: application/json
 
 {
 }
+
+###
+# LIST EMAILS
+
+GET {{RiverBooksWebHost}}/emails
+Accept: application/json
+Content-Type: application/json

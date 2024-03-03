@@ -1,7 +1,6 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
 using MimeKit;
-using RiverBooks.EmailSending.Integrations;
 
 namespace RiverBooks.EmailSending;
 

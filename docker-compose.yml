@@ -28,6 +28,15 @@ services:
       - "25:25"
       - "37408:37408"
 
+  mongodb: 
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodbdata:/data/db
+
 volumes:
   sqlvolume:
   redis:
+  mongodbdata:
