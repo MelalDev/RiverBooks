@@ -1,8 +1,42 @@
-using Ardalis.Result;
+﻿using Ardalis.Result;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
-namespace RiverBooks.EmailSending;
+namespace RiverBooks.EmailSending.EmailBackgroundService;
+
+internal interface IGetEmailsFromOutboxService
+{
+    /*
+ * We could go and get all of the items that need to be processed, but just for demonstration purposes, we're going
+ * to try do one by one so you can see them happening.
+ */
+    Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity();
+}
+
+internal class MongoDbGetEmailsFromOutboxOutBoxService : IGetEmailsFromOutboxService
+{
+    private readonly IMongoCollection<EmailOutboxEntity> _emailCollection;
+
+    public MongoDbGetEmailsFromOutboxOutBoxService(IMongoCollection<EmailOutboxEntity> emailCollection)
+    {
+        _emailCollection = emailCollection;
+    }
+
+    /*
+   * We could go and get all of the items that need to be processed, but just for demonstration purposes, we're going
+   * to try do one by one so you can see them happening.
+   */
+    public async Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity()
+    {
+        // look for entity with DateTimeUtcProcessed null
+        var filter = Builders<EmailOutboxEntity>.Filter.Eq(entity => entity.DateTimeUtcProcessed, null);
+        var unsentemailEntity = await _emailCollection.Find(filter).FirstOrDefaultAsync();
+
+        if (unsentemailEntity is null) return Result.NotFound();
+
+        return unsentemailEntity;
+    }
+}
 
 internal class DefaultSendEmailsFromOutboxService : ISendEmailsFromOutboxService
 {
@@ -12,12 +46,12 @@ internal class DefaultSendEmailsFromOutboxService : ISendEmailsFromOutboxService
     * this were production code I was building, I would probably put this behind a repository or some other more abstract
     * type of interface, but this should work for our needs right now.
     */
-    private readonly IOutboxService _outboxService;
+    private readonly IGetEmailsFromOutboxService _outboxService;
     private readonly ISendEmail _emailSender;
     private readonly IMongoCollection<EmailOutboxEntity> _emailEntityCollection;
     private readonly ILogger<DefaultSendEmailsFromOutboxService> _logger;
 
-    public DefaultSendEmailsFromOutboxService(IOutboxService outboxService,
+    public DefaultSendEmailsFromOutboxService(IGetEmailsFromOutboxService outboxService,
         ISendEmail emailSender,
         IMongoCollection<EmailOutboxEntity> emailEntityCollection,
         ILogger<DefaultSendEmailsFromOutboxService> logger)

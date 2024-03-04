@@ -1,7 +1,7 @@
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace RiverBooks.EmailSending;
+namespace RiverBooks.EmailSending.EmailBackgroundService;
 
 internal class EmailSendingBackgroundService : BackgroundService
 {
@@ -22,7 +22,7 @@ internal class EmailSendingBackgroundService : BackgroundService
         * sending emails, but you also don't want this thing to juse be in a tight loop queueing up CPU, so some delay
         * is useful.
         */
-        int delayMilliseconds = 10_000; // 10 seconds
+        var delayMilliseconds = 10_000; // 10 seconds
         _logger.LogInformation("{servicename} starting ...", nameof(EmailSendingBackgroundService));
 
         while (!stoppingToken.IsCancellationRequested)
