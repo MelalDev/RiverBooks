@@ -150,5 +150,5 @@ Content-Type: application/json
 
 ###
 # TOP SALES
-GET {{RiverBooksWebHost}}/topsales
+GET {{RiverBooksWebHost}}/topsales?month=3&year=2024
 Accept: application/json

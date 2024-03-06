@@ -14,7 +14,8 @@ public static class ReportingModuleServiceExtensions
         // string? connectionString = config.GetConnectionString("OrderProcessingConnectionString");
         // services.AddDbContext<OrderProcessingDbContext>(config => config.UseSqlServer(connectionString));
 
-        // Add Serives
+        // configure module services
+        services.AddScoped<ITopSellingBooksReportService, TopSellingBooksReportService>();
 
         // if using MediatR in this module, add any assemblies that contain handlers to the list
         mediatRAssemblies.Add(typeof(ReportingModuleServiceExtensions).Assembly);
