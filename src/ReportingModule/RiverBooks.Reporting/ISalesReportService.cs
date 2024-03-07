@@ -1,9 +1,8 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using RiverBooks.Reporting.ReportEndpoints;
 
 namespace RiverBooks.Reporting;
 
@@ -27,7 +26,17 @@ internal class DefaultSalesReportService : ISalesReportService
     public async Task<TopBooksByMonthReport> GetTopBooksByMonthReportAsync(int month, int year)
     {
         /*
-        * Notice that it's going to against the Reporting.MonthlyBookSales
+        * Notice that it's going to against the Reporting.MonthlyBookSales, that's the thing that we just created an we're
+        * inserting or updating to, and we just need to do an order by (ORDER BY TotalSales DESC), we don't need to do any joins
+        * or any of that other stuff, we don't need to do any aggregation, there's no summing happening here 
+        * (UnitsSold as Units, TotalSales as Sales) (check TopSellingBooksReportService.cs to compare), right, the aggregation 
+        * is happening as we add the data with those upserts, it's a running total, and so we will get accurate data based on 
+        * all the events that a re coming in up to however many events have been processed, right, so this won't necessarily be 
+        * accurate to the instant, to like the very latest sale that was purchased, but it will be very quickly accurate, and 
+        * for a month in the past, which is typically when you're going to run this report, it will be accurate assuming that 
+        * all the events for that month have been tallied (Remember there is no queue! These events are handled before the 
+        * checkout request finishes)
+        * 
         */
         string sql = @"
 select BookId, Title, Author, UnitsSold as Units, TotalSales as Sales

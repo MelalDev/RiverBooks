@@ -1,4 +1,4 @@
-using FastEndpoints;
+﻿using FastEndpoints;
 
 namespace RiverBooks.Reporting.ReportEndpoints;
 
@@ -18,7 +18,7 @@ internal class TopSalesByMonth2 : Endpoint<TopSalesByMonthRequest, TopSalesByMon
 
     public override async Task HandleAsync(TopSalesByMonthRequest req, CancellationToken ct)
     {
-        var report = _reportService.GetTopBooksByMonthReportAsync(req.Month, req.Year);
+        var report = await _reportService.GetTopBooksByMonthReportAsync(req.Month, req.Year);
         var response = new TopSalesByMonthResponse()
         {
             Report = report

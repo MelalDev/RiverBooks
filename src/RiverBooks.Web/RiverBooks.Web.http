@@ -149,6 +149,11 @@ Accept: application/json
 Content-Type: application/json
 
 ###
-# TOP SALES
+# TOP SALES 1 - REACH IN REPORTING
 GET {{RiverBooksWebHost}}/topsales?month=3&year=2024
+Accept: application/json
+
+###
+# TOP SALES 2 - EVENT INGESTION CUSTOM DB
+GET {{RiverBooksWebHost}}/topsales2?month=3&year=2024
 Accept: application/json
